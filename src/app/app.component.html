@@ -1,4 +1,40 @@
-<h1>Comments</h1>
+<!-- <h1>Comments</h1>
 <ul>
-    <li *ngFor="let comment of comments">{{comment}}</li>
+    <li *ngFor="let comment of comments">{{comment.author}} - {{comment.comment}}</li>
 </ul>
+
+
+
+<input [(ngModel)] ='auth' type="text" placeholder="author">
+<input [(ngModel)] ='comm' type="text" placeholder="comment">
+<input  (click)="newComment(auth, comm)" type="submit"> Beginning code work out!-->
+
+<ul>
+  <li *ngFor="let comment of comments">
+    <div *ngIf="commentToEdit !== comment">
+      {{comment.comment}} - {{comment.author}}
+
+      <button (click)="deleteComment(comment)">
+        Delete
+      </button>
+      <button (click)="makeCommentEditable(comment)">
+        Edit
+      </button>
+    </div>
+
+    <div *ngIf="commentToEdit == comment">
+      <section>
+        <input [(ngModel)]="comment.comment" type="text" placeholder="text">
+        <input [(ngModel)]="comment.author" type="text" placeholder="author">
+        <button (click)="doneEditing()">
+          Done Editing
+        </button>
+      </section>
+    </div>
+  </li>
+</ul>
+<section>
+  <input [(ngModel)]="text" type="text" placeholder="text">
+  <input [(ngModel)]="author" type="text" placeholder="author">
+  <input type="submit" (click)="addComment()">
+</section>
